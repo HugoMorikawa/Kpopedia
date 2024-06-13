@@ -1,0 +1,190 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+/* ベースのボディスタイル */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Krona One; sans-serif; /* フォントスタイルの設定を確認 */
+}
+
+/* ヘッダーの透明背景設定 */
+.header.c_white {
+  background-color: transparent;
+  position: fixed; /* ヘッダーを画面の上部に固定 */
+  width: 100%; /* 幅を全体に設定 */
+  z-index: 1000; /* 他のコンテンツより上に表示 */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 影をつける */
+}
+
+/* ロゴの位置とスタイル設定 */
+.header .logo {
+  position: absolute; /* 絶対位置指定 */
+  top: 20px; /* 上から20pxの位置に設定 */
+  left: 120px; /* 左から20pxの位置に設定 */
+}
+
+/* リンクのスタイリング */
+.header .logo a {
+  font-family:"Krona One", sans-serif;
+  font-size: 24px; /* フォントサイズを24pxに設定 */
+  color: #ffffff; /* リンクの色を暗いグレーに設定 */
+  text-decoration: none; /* 下線を削除 */
+  font-weight: bold; /* フォントを太字に */
+}
+
+/*========= ナビゲーションドロップダウンのためのCSS ===============*/
+
+/*==ナビゲーション全体の設定*/
+nav{
+  background-color: transparent;
+  color:#ffffff;
+  text-align: right;
+}
+/*ナビゲーションを横並びに*/
+nav ul{
+  list-style: none;
+  display: flex;
+  justify-content: right;
+}
+
+/*ナビゲーションのリンク設定*/
+nav ul li a{
+  font-family:"Krona One", sans-serif;
+  font-size: 20px; /* フォントサイズを24pxに設定 */
+  color: #ffffff; /* リンクの色を暗いグレーに設定 */
+  text-decoration: none; /* 下線を削除 */
+  font-weight: bold;
+  display: block;
+  text-decoration: none;
+  color: #ffffff;
+  padding:20px 35px;
+  transition:all .3s;
+}
+
+
+/*ナビゲーションaタグの形状*/
+nav li.has-child ul li a{
+  color: #fff;
+  border-bottom:solid 1px rgba(255,255,255,0.6);
+}
+
+nav li.has-child ul li:last-child > a{
+ border-bottom:none;
+}
+
+nav li.has-child ul li a:hover,
+nav li.has-child ul li a:active{
+  background:#3577CA;
+}
+
+
+/*==3階層目*/
+
+/*3階層目の位置*/
+nav li.has-child ul ul{
+  top:0;
+  left:182px;
+  background:#66ADF5;
+}
+
+nav li.has-child ul ul li a:hover,
+nav li.has-child ul ul li a:active{
+  background:#448ED3;
+}
+
+
+/*==768px以下の形状*/
+
+@media screen and (max-width:768px){
+  nav{
+    padding: 0;
+  }
+  
+  nav ul{
+    display: block;
+  }
+  
+  nav li.has-child ul,
+  nav li.has-child ul ul{
+    position: relative;
+  left:0;
+  top:0;
+  width:100%;
+  visibility:visible;/*JSで制御するため一旦表示*/
+  opacity:1;/*JSで制御するため一旦表示*/
+  display: none;/*JSのslidetoggleで表示させるため非表示に*/
+  transition:none;/*JSで制御するためCSSのアニメーションを切る*/
+}
+  
+nav ul li a{
+  border-bottom:1px solid #ccc;
+}
+
+/*矢印の位置と向き*/
+
+nav ul li.has-child::before{
+  left:20px;  
+}
+
+nav ul ul li.has-child::before{
+    transform: rotate(135deg);
+  left:20px;
+}
+    
+nav ul li.has-child.active::before{
+    transform: rotate(-45deg);
+}
+
+}
+
+
+/*========= レイアウトのためのCSS ===============*/
+
+h1{
+  font-size:2rem;
+  text-align: center;
+  text-transform: uppercase;
+  padding: 20px;
+}
+
+h2{
+  font-size:1.2rem;
+  text-align: center;
+  margin: 0 0 30px 0;
+}
+
+p{
+  margin-top:20px;  
+}
+
+small{
+  background:#333;
+  color:#fff;
+  display: block;
+  text-align: center;
+  padding:20px;
+}
+
+
+section{
+  padding:30px;
+}
+
+section:nth-child(2n){
+  background:#f3f3f3; 
+}
+
+
